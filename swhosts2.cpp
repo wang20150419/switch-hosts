@@ -16,6 +16,7 @@ struct hosts_s{
 typedef struct hosts_s hosts_t, *hosts_p_t;
 
 HANDLE SpawnAndRedirect(LPSTR commandLine, HANDLE *hStdOutputReadPipe, LPCTSTR lpCurrentDirectory)
+// copy from  http://packcab.googlecode.com/svn/trunk/PipeTest/PipeTestDlg.cpp
 {
 	HANDLE hStdOutputWritePipe, hStdOutput, hStdError;
 	CreatePipe(hStdOutputReadPipe, &hStdOutputWritePipe, NULL, 0);	// create a non-inheritable pipe
@@ -115,7 +116,7 @@ int fileisexist( char *fn )
 }
 
 void TrimString( char *line )
-//过滤注释行（假定以"//"开头），去除回车换行符，以及头尾空格
+//过滤注释行（假定以//或#开头），去除回车换行符，以及头尾空格
 {
      int i, len;
 
