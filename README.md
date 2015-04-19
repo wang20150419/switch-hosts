@@ -23,3 +23,8 @@ SWhosts用法(v2015.04.19)：
    
 
 5）可到“任务计划程序”的“事件查看器任务”里，调整swhosts的相关属性。
+
+6) 应用场景：
+    办公室有ipv6地址，通过特定的ipv6 hosts文件，可以访问google,gmail,youtube等。
+    离开办公室的时候，使用ipv4 hosts文件，通过穿墙等方法访问google,gmail...。
+    利用此程序，可以根据场景自动切换hosts文件。
