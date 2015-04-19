@@ -28,3 +28,10 @@ SWhosts用法(v2015.04.19)：
     办公室有ipv6地址，通过特定的ipv6 hosts文件，可以访问google,gmail,youtube等。
     离开办公室的时候，使用ipv4 hosts文件，通过穿墙等方法访问google,gmail...。
     利用此程序，可以根据场景自动切换hosts文件。
+    
+7) 执行程序下载：
+     64bit: https://drive.google.com/file/d/0BzoaUWj_3m8tbS1GZm9LRGFCYkE/view?usp=sharing
+     32bit: https://drive.google.com/file/d/0BzoaUWj_3m8tNnFJWklOX0J3TWs/view?usp=sharing
+     
+8) ipv6 hosts:
+     https://github.com/lennylxx/ipv6-hosts
