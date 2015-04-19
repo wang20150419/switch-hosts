@@ -25,7 +25,7 @@ HANDLE SpawnAndRedirect(LPSTR commandLine, HANDLE *hStdOutputReadPipe, LPCTSTR l
 	DuplicateHandle(GetCurrentProcess(), hStdOutput,
 		GetCurrentProcess(), &hStdError,	// duplicate stdout as inheritable stderr
 		0, TRUE, DUPLICATE_SAME_ACCESS);
-	CloseHandle(hStdOutputWritePipe);								// no longer need the non-inheritable "write" end of the pipe
+	CloseHandle(hStdOutputWritePipe);		// no longer need the non-inheritable "write" end of the pipe
 
 	PROCESS_INFORMATION pi;
 	STARTUPINFO si;
@@ -35,8 +35,8 @@ HANDLE SpawnAndRedirect(LPSTR commandLine, HANDLE *hStdOutputReadPipe, LPCTSTR l
 	si.hStdInput  = GetStdHandle(STD_INPUT_HANDLE);	// (this is bad on a GUI app)
 	si.hStdOutput = hStdOutput;
 	si.hStdError  = hStdError;
-	si.wShowWindow = SW_HIDE;						// IMPORTANT: hide subprocess console window
-	//TCHAR commandLineCopy[1024];					// CreateProcess requires a modifiable buffer
+	si.wShowWindow = SW_HIDE;				// IMPORTANT: hide subprocess console window
+	//TCHAR commandLineCopy[1024];				// CreateProcess requires a modifiable buffer
 	//strcpy(commandLineCopy, commandLine);
 	if (!CreateProcess(	NULL, commandLine, NULL, NULL, TRUE,
 		CREATE_NEW_CONSOLE, NULL, lpCurrentDirectory, &si, &pi))
@@ -228,7 +228,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	fclose( fp );
 
 	ShellExecute( NULL, "open", cmdfile, NULL, NULL, SW_HIDE );
-	//DeleteFile( cmdfile );
+	//DeleteFile( cmdfile ); //如要删除此文件，则要等此批处理命令执行完毕后。
 
 	return TRUE;
 }
