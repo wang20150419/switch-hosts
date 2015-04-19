@@ -6,7 +6,7 @@ SWhosts用法(v2015.04.19)：
 
 (操作系统要求：windows 7/8/8.1)
 
-根据网关MAC地址，自动选用对应的HOSTS文件。
+根据网关MAC地址（对应不同办公环境），自动选用对应的HOSTS文件。
 
 1）hosts.default为缺省hosts文件，当条件不匹配的时候使用。
 
