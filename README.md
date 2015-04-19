@@ -31,7 +31,9 @@ SWhosts用法(v2015.04.19)：
     
 7) 执行程序下载：
      64bit: https://drive.google.com/file/d/0BzoaUWj_3m8tbS1GZm9LRGFCYkE/view?usp=sharing
+     
      32bit: https://drive.google.com/file/d/0BzoaUWj_3m8tNnFJWklOX0J3TWs/view?usp=sharing
      
 8) ipv6 hosts:
      https://github.com/lennylxx/ipv6-hosts
+     
