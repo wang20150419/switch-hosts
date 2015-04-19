@@ -1,0 +1,6 @@
+# Sample ipv6 hosts file
+
+2607:f8b0:4007:804::1009 google.com
+2607:f8b0:4007:804::1009 www.google.com
+2607:f8b0:4007:804::1009 admin.google.com
+2607:f8b0:4007:808::200d accounts.google.com 
