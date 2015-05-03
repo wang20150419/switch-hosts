@@ -44,8 +44,10 @@ SWhosts用法(v2015.04.19)：
      可参考：http://blog.csdn.net/Cod1ng/article/details/45421025
      
 10）ipv6 NAT 之 ipv6地址和网关配置脚本（借用hiwifi函数）：
+     
      #!/bin/sh
      # /lib/platform.sh, eth0.2 （wan interface） for HG255D
+     
      tw_get_mac() # from hiwifi
      {
         ifconfig eth0.2 | grep HWaddr | awk '{ print $5 }' | awk -F: '{printf $1$2$3$4$5$6}'
@@ -74,7 +76,7 @@ SWhosts用法(v2015.04.19)：
 	        ip -6 addr add "$ip6addr" dev br-lan
 	
 	        local gwip=`ifconfig | grep eth0.2 -A5 | grep "inet6 addr" | grep "Global" | awk '{print $3}' | awk -F: '{printf $1":"$2":"$3":"$4"::1"}'`
-          route -A inet6 add default gw "$gwip"
+           route -A inet6 add default gw "$gwip"
       }
 
       configure_lan_ipv6
