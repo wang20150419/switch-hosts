@@ -62,7 +62,7 @@ SWhosts用法(v2015.04.19)：
       }
 
       # $1: the address/prefix_len pair
-      configure_lan_ipv6() # from hiwifi
+      configure_lan_ipv6() # from hiwifi and modify it
       {
 	        local mac_suffix=`tw_get_mac | tr '[A-Z]' '[a-z]'`
 	        mac_suffix=${mac_suffix:8:4}
