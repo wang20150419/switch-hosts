@@ -40,3 +40,41 @@ SWhosts用法(v2015.04.19)：
 8) ipv6 hosts:
      https://github.com/lennylxx/ipv6-hosts
      
+9) openwrt ipv6 NAT 教程：
+     可参考：http://blog.csdn.net/Cod1ng/article/details/45421025
+     
+10）ipv6 NAT 之 ipv6地址和网关配置脚本（借用hiwifi函数）：
+     #!/bin/sh
+     # /lib/platform.sh, eth0.2 （wan interface） for HG255D
+     tw_get_mac() # from hiwifi
+     {
+        ifconfig eth0.2 | grep HWaddr | awk '{ print $5 }' | awk -F: '{printf $1$2$3$4$5$6}'
+     }
+
+     get_random_hex_16bit() # from hiwifi
+     {
+	       local __ts=`date +%s`
+	       local __hex=`awk -vt=$__ts 'BEGIN{printf "%x\n",t%65536}'`
+	       [ -z "$__hex" ] && __hex=0
+	       echo "$__hex"
+      }
+
+      # $1: the address/prefix_len pair
+      configure_lan_ipv6() # from hiwifi
+      {
+	        local mac_suffix=`tw_get_mac | tr '[A-Z]' '[a-z]'`
+	        mac_suffix=${mac_suffix:8:4}
+	        [ -z "$mac_suffix" ] && mac_suffix=`get_random_hex_16bit`
+	        # Embed our 400 tel. number in IPv6 address :)
+	        # 4006::/16 is beyond current allocation space 2000::/3, safe to use
+	        local ip6addr=4006:e024:680:"$mac_suffix"::1/64
+
+        	uci set network.lan.ip6addr="$ip6addr"
+	        uci commit
+	        ip -6 addr add "$ip6addr" dev br-lan
+	
+	        local gwip=`ifconfig | grep eth0.2 -A5 | grep "inet6 addr" | grep "Global" | awk '{print $3}' | awk -F: '{printf $1":"$2":"$3":"$4"::1"}'`
+          route -A inet6 add default gw "$gwip"
+      }
+
+      configure_lan_ipv6
