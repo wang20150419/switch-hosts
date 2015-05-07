@@ -71,12 +71,18 @@ SWhosts用法(v2015.04.19)：
 	        # 4006::/16 is beyond current allocation space 2000::/3, safe to use
 	        local ip6addr=4006:e024:680:"$mac_suffix"::1/64
 
-        	uci set network.lan.ip6addr="$ip6addr"
-	        uci commit
-	        ip -6 addr add "$ip6addr" dev br-lan
-	
-	        local gwip=`ifconfig | grep eth0.2 -A5 | grep "inet6 addr" | grep "Global" | awk '{print $3}' | awk -F: '{printf $1":"$2":"$3":"$4"::1"}'`
-            route -A inet6 add default gw "$gwip"
-      }
+                uci set dhcp.lan.dhcpv6='server'
+                uci set dhcp.lan.ra='server'
+                uci set dhcp.lan.ra_management='1'
+                uci set dhcp.lan.ra_default='1'
+                uci set network.lan.ip6addr="$ip6addr"
+                uci commit
+    
+                ip -6 addr add "$ip6addr" dev br-lan
+                local gwip=`ifconfig | grep eth0.2 -A5 | grep "inet6 addr" | grep "Global" | awk '{print $3}' | awk -F: '{printf $1":"$2":"$3":"$4"::1"}'`
+                route -A inet6 add default gw "$gwip"
+        
+                ip6tables -t nat -A POSTROUTING -o eth0.2 -j MASQUERADE
+       }
 
       configure_lan_ipv6
