@@ -43,7 +43,7 @@ SWhosts用法(v2015.04.19)：
 9) openwrt ipv6 NAT 教程：
      可参考：http://blog.csdn.net/Cod1ng/article/details/45421025
      
-10）ipv6 NAT 之路由器 ipv6地址和网关配置脚本（借用hiwifi函数）：
+10）OpenWRT ipv6 NAT 之路由器 ipv6地址和网关配置脚本（借用hiwifi函数）：
      
      #!/bin/sh
      # /lib/platform.sh, eth0.2 （wan interface） for HG255D
